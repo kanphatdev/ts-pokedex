@@ -1,10 +1,11 @@
-import Navbar from "@/components/Navbar";
-import Image from "next/image";
+"use client";
+
+import Gridpage from "./grid/page";
 
 export default function Home() {
   return (
-<>
-<Navbar/>
-</>
+    <>
+      <Gridpage />
+    </>
   );
 }

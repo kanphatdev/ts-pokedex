@@ -10,6 +10,7 @@
 │ ├──tailwind css # utility Frameworks
 │ ├── Daisy ui  # Interface Plugin
 │ ├── axios # Fetch Data Framework
+│ ├── Lucid Icon # Icon Library
 # Language
 │ ├── Typescript
 
