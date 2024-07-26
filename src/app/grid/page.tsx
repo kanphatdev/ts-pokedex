@@ -90,12 +90,12 @@ const Gridpage = () => {
       <Navbar />
       <main className="py-8 px-4">
         <section className="flex gap-4 items-center justify-between py-4">
-          <div className="">
+          <div>
             <h1 className="text-5xl font-bold capitalize text-yellow-300">
               grid view
             </h1>
           </div>
-          <div className="">
+          <div>
             <div className="join">
               <Link href={"/grid"}>
                 <button
@@ -125,38 +125,43 @@ const Gridpage = () => {
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {Loading && <p>Loading...</p>}
           {Error && <p>{Error}</p>}
-          {PokeDetails.map((pokemon) => (
-            <div key={pokemon.id} className="rounded overflow-hidden shadow-lg bg-white">
-              <Image
-                className="w-full"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                alt={Poke?.results[pokemon.id - 1].name}
-                width={200}
-                height={200}
-              />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2 capitalize">
-                  {Poke?.results[pokemon.id - 1].name}
+          {PokeDetails.map((pokemon) => {
+            const pokemonName = Poke?.results.find((p) => p.url === `https://pokeapi.co/api/v2/pokemon/${pokemon.id}/`)?.name;
+            return (
+              <div key={pokemon.id} className="rounded overflow-hidden shadow-lg bg-white">
+                <Image
+                  className="w-full"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                  alt={pokemonName}
+                  width={200}
+                  height={200}
+                />
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2 capitalize">
+                    {pokemonName}
+                  </div>
+                  <div className="text-gray-700 text-base">
+                    {pokemon.types.map((typeInfo) => (
+                      <span
+                        key={typeInfo.slot}
+                        className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 capitalize"
+                        style={{ backgroundColor: TYPE_COLORS[typeInfo.type.name] }}
+                      >
+                        {typeInfo.type.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="text-gray-700 text-base">
-                  {pokemon.types.map((typeInfo) => (
-                    <span
-                      key={typeInfo.slot}
-                      className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 capitalize"
-                      style={{ backgroundColor: TYPE_COLORS[typeInfo.type.name] }}
-                    >
-                      {typeInfo.type.name}
-                    </span>
-                  ))}
+                <div className="px-6 pt-4 pb-2">
+                  <Link href={`/poke/${pokemonName}`}>
+                    <button className="btn text-white hover:bg-yellow-500 w-full capitalize bg-orange-500">
+                      detail
+                    </button>
+                  </Link>
                 </div>
               </div>
-              <div className="px-6 pt-4 pb-2">
-                <button className="btn text-white hover:bg-yellow-500 w-full capitalize bg-orange-500">
-                  detail
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </main>
     </>

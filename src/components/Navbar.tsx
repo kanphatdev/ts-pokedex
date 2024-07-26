@@ -1,4 +1,5 @@
 "use client";
+import { GripHorizontal } from 'lucide-react';
 import React from 'react';
 
 const Navbar = () => {
@@ -29,8 +30,16 @@ const Navbar = () => {
             />
           </svg>
         </div>
-        <div className="text-white">
-          
+        <div className="">
+        <details className="dropdown">
+  <summary className="btn m-1 capitalize bg-yellow-500 hover:bg-orange-500 text-white">
+  <GripHorizontal /> poke element
+  </summary>
+  <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</details>
         </div>
       </div>
     </nav>

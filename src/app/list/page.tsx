@@ -100,10 +100,11 @@ const Listpage = () => {
       <Navbar />
       <main className="py-8 px-4">
         <section className="flex gap-4 items-center justify-between">
-          <div className="">
+          <div className="flex gap-4">
             <h1 className="text-5xl font-bold text-yellow-300 capitalize">
               list view
             </h1>
+           
           </div>
           <div className="">
             <div className="join">
@@ -128,6 +129,7 @@ const Listpage = () => {
                   list view <Rows2 />
                 </button>
               </Link>
+             
             </div>
           </div>
         </section>
