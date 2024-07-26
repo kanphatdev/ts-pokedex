@@ -151,7 +151,7 @@ const Gridpage = () => {
                 </div>
               </div>
               <div className="px-6 pt-4 pb-2">
-                <button className="btn btn-active btn-ghost w-full capitalize">
+                <button className="btn text-white hover:bg-yellow-500 w-full capitalize bg-orange-500">
                   detail
                 </button>
               </div>
