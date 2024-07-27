@@ -89,9 +89,9 @@ const Gridpage = () => {
     <>
       <Navbar />
       <main className="py-8 px-4">
-        <section className="flex gap-4 items-center justify-between py-4">
+        <section className="flex flex-col sm:flex-row gap-4 items-center justify-between py-4">
           <div>
-            <h1 className="text-5xl font-bold capitalize text-yellow-300">
+            <h1 className="text-5xl font-bold capitalize text-yellow-300 text-center sm:text-left">
               grid view
             </h1>
           </div>
@@ -122,7 +122,7 @@ const Gridpage = () => {
           </div>
         </section>
 
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {Loading && <p>Loading...</p>}
           {Error && <p>{Error}</p>}
           {PokeDetails.map((pokemon) => {
@@ -137,10 +137,10 @@ const Gridpage = () => {
                   height={200}
                 />
                 <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2 capitalize">
+                  <div className="font-bold text-xl mb-2 capitalize text-center sm:text-left">
                     {pokemonName}
                   </div>
-                  <div className="text-gray-700 text-base">
+                  <div className="text-gray-700 text-base text-center sm:text-left">
                     {pokemon.types.map((typeInfo) => (
                       <span
                         key={typeInfo.slot}

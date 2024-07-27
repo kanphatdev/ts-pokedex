@@ -99,13 +99,13 @@ const Listpage = () => {
     <>
       <Navbar />
       <main className="py-8 px-4">
-        <section className="flex gap-4 items-center justify-between">
-          <div className="flex gap-4">
-            <h1 className="text-5xl font-bold text-yellow-300 capitalize">
+        <section className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <div>
+            <h1 className="text-5xl font-bold text-yellow-300 capitalize text-center sm:text-left">
               list view
             </h1>
           </div>
-          <div className="">
+          <div className="flex gap-4">
             <div className="join">
               <Link href={"/grid"}>
                 <button
@@ -140,7 +140,7 @@ const Listpage = () => {
               key={pokemon.id}
               href={`/poke/${Poke?.results[pokemon.id - 1].name}`}
             >
-              <div className="flex items-center border rounded p-4 shadow-lg bg-white cursor-pointer">
+              <div className="flex flex-col sm:flex-row items-center border rounded p-4 shadow-lg bg-white cursor-pointer">
                 <Image
                   className="w-20 h-20"
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
@@ -148,11 +148,11 @@ const Listpage = () => {
                   width={80}
                   height={80}
                 />
-                <div className="ml-4">
+                <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
                   <div className="font-bold text-xl mb-2 capitalize">
                     {Poke?.results[pokemon.id - 1].name}
                   </div>
-                  <div className="flex space-x-2 mb-2">
+                  <div className="flex flex-wrap justify-center sm:justify-start space-x-2 mb-2">
                     {pokemon.types.map((typeInfo) => (
                       <span
                         key={typeInfo.slot}

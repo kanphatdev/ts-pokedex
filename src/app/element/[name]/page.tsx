@@ -6,8 +6,6 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-
-
 interface PokemonType {
   slot: number;
   type: {
@@ -99,23 +97,22 @@ const Elementpage = () => {
     <>
       <Navbar />
       <main className="py-8 px-4">
-        <section className="flex items-center justify-between">
-          <div className="">
-            <h1 className="text-5xl font-bold capitalize" style={{ color: typeColor }}>
-              {param.name} pokemon
+        <section className="flex flex-col md:flex-row items-center justify-between">
+          <div className="w-full md:w-auto mb-4 md:mb-0">
+            <h1 className="text-4xl md:text-5xl font-bold capitalize" style={{ color: typeColor }}>
+              {param.name} Pokemon
             </h1>
           </div>
-          <div className="">
+          <div className="w-full md:w-auto">
             <Link href={"/type_category"}>
-                <button className="btn bg-orange-500 text-white hover:bg-yellow-500 hover:text-white">
-              <Layers3 />
-            </button>
+              <button className="btn bg-orange-500 text-white hover:bg-yellow-500 hover:text-white w-full md:w-auto">
+                <Layers3 />
+              </button>
             </Link>
-        
           </div>
         </section>
         <section className="py-4 px-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {!loading && !error && pokeDetails.map((pokemon) => (

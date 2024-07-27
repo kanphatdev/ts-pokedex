@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from "axios";
 import Image from "next/image";
 import { ArrowLeftToLine } from "lucide-react";
 import Link from "next/link";
+import Skeleton from "@/components/Skeleton";
 
 interface PokemonType {
   slot: number;
@@ -104,29 +105,37 @@ const Pokepage = () => {
 
   const getTypeColor = (type: string) => {
     const TYPE_COLORS: { [key: string]: string } = {
-        bug: "#B1C12E",
-        dark: "#4F3A2D",
-        dragon: "#755EDF",
-        electric: "#FCBC17",
-        fairy: "#F4B1F4",
-        fighting: "#823551D",
-        fire: "#E73B0C",
-        flying: "#A3B3F7",
-        ghost: "#6060B2",
-        grass: "#74C236",
-        ground: "#D3B357",
-        ice: "#A3E7FD",
-        normal: "#C8C4BC",
-        poison: "#934594",
-        psychic: "#ED4882",
-        rock: "#B9A156",
-        steel: "#B5B5C3",
-        water: "#3295F6",
+      bug: "#B1C12E",
+      dark: "#4F3A2D",
+      dragon: "#755EDF",
+      electric: "#FCBC17",
+      fairy: "#F4B1F4",
+      fighting: "#823551D",
+      fire: "#E73B0C",
+      flying: "#A3B3F7",
+      ghost: "#6060B2",
+      grass: "#74C236",
+      ground: "#D3B357",
+      ice: "#A3E7FD",
+      normal: "#C8C4BC",
+      poison: "#934594",
+      psychic: "#ED4882",
+      rock: "#B9A156",
+      steel: "#B5B5C3",
+      water: "#3295F6",
     };
     return TYPE_COLORS[type] || "#777";
   };
 
-  if (Loading) return <p>Loading...</p>;
+  if (Loading) return (
+    <div className="flex items-center justify-center">
+   <Skeleton />   
+    </div>
+   
+
+
+
+  );
   if (Error) return <p>{Error}</p>;
 
   const primaryTypeColor = Pokemon
@@ -134,7 +143,7 @@ const Pokepage = () => {
     : "#777";
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4">
       {Pokemon && (
         <div className="max-w-4xl mx-auto bg-white rounded shadow-lg overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -170,7 +179,7 @@ const Pokepage = () => {
                 </button>
               </Link>
 
-              <div className="card bg-base-100 w-96 shadow-xl mt-10">
+              <div className="card bg-base-100 shadow-xl mt-10">
                 <p className="p-4">{Description}</p>
               </div>
               <div className="stats shadow mt-4">

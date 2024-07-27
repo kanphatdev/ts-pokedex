@@ -103,11 +103,11 @@ const Navbar = () => {
 
   return (
     <nav className="shadow-md p-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <div className="text-yellow-500 text-xl capitalize font-bold">
           ts pokedex
         </div>
-        <div className="relative w-1/2">
+        <div className="relative w-full md:w-1/2">
           <input 
             type="text" 
             placeholder="Search by name or ID..." 

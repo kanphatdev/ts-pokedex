@@ -62,22 +62,21 @@ const Category = () => {
 
   return (
     <main className='py-8 px-4 bg-gray-200'>
-      <section className="flex items-center justify-between">
-        <div className="">
-          <h1 className="text-5xl font-bold capitalize text-orange-500">
-            pokemon type categories
+      <section className="flex items-center justify-between flex-wrap">
+        <div className="w-full md:w-auto mb-4 md:mb-0">
+          <h1 className="text-4xl md:text-5xl font-bold capitalize text-orange-500">
+            Pokemon Type Categories
           </h1>
         </div>
-        <div className="">
-        <Link href={"/"}>
-           <button className="btn bg-orange-500 text-white hover:bg-yellow-500 hover:text-white">
-            <House />
-          </button>
-        </Link>
-       
+        <div className="w-full md:w-auto">
+          <Link href={"/"}>
+            <button className="btn bg-orange-500 text-white hover:bg-yellow-500 hover:text-white">
+              <House />
+            </button>
+          </Link>
         </div>
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4 px-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-4 px-2">
         {pokemonTypes.map((type) => (
           <Link key={type} href={`/element/${type}`}>
             <button
