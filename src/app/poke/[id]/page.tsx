@@ -14,6 +14,22 @@ interface PokemonType {
   };
 }
 
+interface PokemonStat {
+  base_stat: number;
+  stat: {
+    name: string;
+  };
+}
+
+interface PokemonAbility {
+  ability: {
+    name: string;
+    url: string;
+  };
+  is_hidden: boolean;
+  slot: number;
+}
+
 interface PokemonDetails {
   id: number;
   name: string;
@@ -22,6 +38,8 @@ interface PokemonDetails {
     front_default: string;
   };
   base_experience: number;
+  stats: PokemonStat[];
+  abilities: PokemonAbility[];
 }
 
 interface PokemonSpecies {
@@ -63,7 +81,9 @@ const Pokepage = () => {
         );
         setDescription(flavorTextEntry ? flavorTextEntry.flavor_text : "");
         setCaptureRate(speciesResponse.data.capture_rate);
-        setEggGroups(speciesResponse.data.egg_groups.map((group) => group.name));
+        setEggGroups(
+          speciesResponse.data.egg_groups.map((group) => group.name)
+        );
         setError("");
       } catch (error: any) {
         setError(`Something went wrong: ${error.message}`);
@@ -77,8 +97,41 @@ const Pokepage = () => {
     }
   }, [id]);
 
+  const getStatValue = (statName: string): number => {
+    const stat = Pokemon?.stats.find((s) => s.stat.name === statName);
+    return stat ? stat.base_stat : 0;
+  };
+
+  const getTypeColor = (type: string) => {
+    const TYPE_COLORS: { [key: string]: string } = {
+      bug: "#B1C12E",
+      dark: "#4F3A2D",
+      dragon: "#755EDF",
+      electric: "#FCBC17",
+      fairy: "#F4B1F4",
+      fighting: "#823551D",
+      fire: "#E73B0C",
+      flying: "#A3B3F7",
+      ghost: "#6060B2",
+      grass: "#74C236",
+      ground: "#D3B357",
+      ice: "#A3E7FD",
+      normal: "#C8C4BC",
+      poison: "#934594",
+      psychic: "#ED4882",
+      rock: "#B9A156",
+      steel: "#B5B5C3",
+      water: "#3295F6",
+    };
+    return TYPE_COLORS[type] || "#777";
+  };
+
   if (Loading) return <p>Loading...</p>;
   if (Error) return <p>{Error}</p>;
+
+  const primaryTypeColor = Pokemon
+    ? getTypeColor(Pokemon.types[0].type.name)
+    : "#777";
 
   return (
     <div className="container mx-auto py-8">
@@ -117,7 +170,7 @@ const Pokepage = () => {
                 </button>
               </Link>
 
-              <div className="card bg-base-100 w-96 shadow-xl">
+              <div className="card bg-base-100 w-96 shadow-xl mt-10">
                 <p className="p-4">{Description}</p>
               </div>
               <div className="stats shadow mt-4">
@@ -147,8 +200,90 @@ const Pokepage = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col">
-                
+              <div className="flex flex-col mt-4">
+                <p className="text-lg capitalize mt-4">poke status</p>
+                {/* HP progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("hp")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    HP: {getStatValue("hp")}
+                  </span>
+                </div>
+                {/* Attack progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("attack")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    Attack: {getStatValue("attack")}
+                  </span>
+                </div>
+                {/* Defense progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("defense")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    Defense: {getStatValue("defense")}
+                  </span>
+                </div>
+                {/* Special Attack progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("special-attack")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    Special Attack: {getStatValue("special-attack")}
+                  </span>
+                </div>
+                {/* Special Defense progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("special-defense")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    Special Defense: {getStatValue("special-defense")}
+                  </span>
+                </div>
+                {/* Speed progress */}
+                <div className="relative group">
+                  <progress
+                    className="progress w-full mt-4"
+                    value={getStatValue("speed")}
+                    max="100"
+                    style={{ backgroundColor: primaryTypeColor }}
+                  ></progress>
+                  <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 -translate-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gray-800 text-white text-xs rounded px-2 py-1">
+                    Speed: {getStatValue("speed")}
+                  </span>
+                </div>
+              </div>
+              <div className="card-actions justify-end mt-4">
+                {Pokemon.abilities.map((abilityInfo) => (
+                  <div
+                    key={abilityInfo.slot}
+                    className="badge badge-outline capitalize mr-1"
+                  >
+                    {abilityInfo.ability.name}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -156,30 +291,6 @@ const Pokepage = () => {
       )}
     </div>
   );
-};
-
-const getTypeColor = (type: string) => {
-  const TYPE_COLORS: { [key: string]: string } = {
-    bug: "#B1C12E",
-    dark: "#4F3A2D",
-    dragon: "#755EDF",
-    electric: "#FCBC17",
-    fairy: "#F4B1F4",
-    fighting: "#823551D",
-    fire: "#E73B0C",
-    flying: "#A3B3F7",
-    ghost: "#6060B2",
-    grass: "#74C236",
-    ground: "#D3B357",
-    ice: "#A3E7FD",
-    normal: "#C8C4BC",
-    poison: "#934594",
-    psychic: "#ED4882",
-    rock: "#B9A156",
-    steel: "#B5B5C3",
-    water: "#3295F6",
-  };
-  return TYPE_COLORS[type] || "#777";
 };
 
 export default Pokepage;

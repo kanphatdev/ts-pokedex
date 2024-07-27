@@ -104,7 +104,6 @@ const Listpage = () => {
             <h1 className="text-5xl font-bold text-yellow-300 capitalize">
               list view
             </h1>
-           
           </div>
           <div className="">
             <div className="join">
@@ -129,7 +128,6 @@ const Listpage = () => {
                   list view <Rows2 />
                 </button>
               </Link>
-             
             </div>
           </div>
         </section>
@@ -138,34 +136,44 @@ const Listpage = () => {
           {Loading && <p>Loading...</p>}
           {Error && <p>{Error}</p>}
           {PokeDetails.map((pokemon) => (
-            <div key={pokemon.id} className="flex items-center border rounded p-4 shadow-lg bg-white">
-              <Image
-                className="w-20 h-20"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                alt={Poke?.results[pokemon.id - 1].name}
-                width={80}
-                height={80}
-              />
-              <div className="ml-4">
-                <div className="font-bold text-xl mb-2 capitalize">
-                  {Poke?.results[pokemon.id - 1].name}
-                </div>
-                <div className="flex space-x-2 mb-2">
-                  {pokemon.types.map((typeInfo) => (
-                    <span
-                      key={typeInfo.slot}
-                      className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white capitalize"
-                      style={{ backgroundColor: TYPE_COLORS[typeInfo.type.name] }}
-                    >
-                      {typeInfo.type.name}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-gray-700 text-sm">
-                  Abilities: {pokemon.abilities.map(ability => ability.ability.name).join(", ")}
+            <Link
+              key={pokemon.id}
+              href={`/poke/${Poke?.results[pokemon.id - 1].name}`}
+            >
+              <div className="flex items-center border rounded p-4 shadow-lg bg-white cursor-pointer">
+                <Image
+                  className="w-20 h-20"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                  alt={Poke?.results[pokemon.id - 1].name}
+                  width={80}
+                  height={80}
+                />
+                <div className="ml-4">
+                  <div className="font-bold text-xl mb-2 capitalize">
+                    {Poke?.results[pokemon.id - 1].name}
+                  </div>
+                  <div className="flex space-x-2 mb-2">
+                    {pokemon.types.map((typeInfo) => (
+                      <span
+                        key={typeInfo.slot}
+                        className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white capitalize"
+                        style={{
+                          backgroundColor: TYPE_COLORS[typeInfo.type.name],
+                        }}
+                      >
+                        {typeInfo.type.name}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-gray-700 text-sm">
+                    Abilities:{" "}
+                    {pokemon.abilities
+                      .map((ability) => ability.ability.name)
+                      .join(", ")}
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </main>
