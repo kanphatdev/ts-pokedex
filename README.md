@@ -4,17 +4,15 @@
 
 #### Project Name: #### ts pokedex
 
-
-.
-├── React Frameworks
-│   └── next js
-├── Utility Frameworks
-│   └── tailwind css
-├── Interface Plugin
-│   └── Daisy ui
-├── Fetch Data Framework
-│   └── axios
-├── Icon Library
-│   └── Lucid Icon
-└── Language
-    └── Typescript
+- React Frameworks
+  -  next js
+- Utility Frameworks
+    - tailwind css
+  - Interface Plugin
+     - Daisy ui
+  - Fetch Data Framework
+    - axios
+- Icon Library
+  - Lucid Icon
+- Language
+   - Typescript
