@@ -6,11 +6,16 @@
 
 
 ## Stack and dependency
- next js # React Frameworks
-tailwind css # utility Frameworks
- Daisy ui  # Interface Plugin
- axios # Fetch Data Framework
- Lucid Icon # Icon Library
-# Language
- Typescript
-
+.
+├── React Frameworks
+│   └── next js
+├── Utility Frameworks
+│   └── tailwind css
+├── Interface Plugin
+│   └── Daisy ui
+├── Fetch Data Framework
+│   └── axios
+├── Icon Library
+│   └── Lucid Icon
+└── Language
+    └── Typescript
