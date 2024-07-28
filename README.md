@@ -4,6 +4,7 @@
 
 #### Project Name: #### ts pokedex
 
+## Stack and dependencies
 - React Frameworks
   -  next js
 - Utility Frameworks
